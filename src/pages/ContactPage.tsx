@@ -63,7 +63,7 @@ export default function ContactPage() {
                 <h2 className="font-display text-2xl font-bold text-gray-900">Our Office</h2>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                     <MapPin size={18} className="text-primary" />
                   </div>
                   <div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                     <Mail size={18} className="text-primary" />
                   </div>
                   <div>
@@ -84,7 +84,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                     <Phone size={18} className="text-primary" />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map */}
-      <section className="h-[400px] bg-gray-200 relative">
+      <section className="h-100 bg-gray-200 relative">
         <iframe
           title="Hydra Drop Office Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.3!2d-122.332!3d47.604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDM2JzE0LjQiTiAxMjLCsDE5JzU1LjIiVw!5e0!3m2!1sen!2sus!4v1234567890"

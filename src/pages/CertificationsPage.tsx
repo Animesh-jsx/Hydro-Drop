@@ -85,7 +85,7 @@ export default function CertificationsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="flex items-start gap-3"
                   >
-                    <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                    <CheckCircle size={20} className="text-primary shrink-0 mt-0.5" />
                     <p className="text-gray-700 text-sm">{point}</p>
                   </motion.div>
                 ))}
@@ -96,7 +96,7 @@ export default function CertificationsPage() {
               <img
                 src="https://images.unsplash.com/photo-1559839914-17aae19cec71?w=500&auto=format&fit=crop&q=80"
                 alt="Woman drinking certified pure water"
-                className="w-full h-[450px] object-cover rounded-2xl shadow-xl"
+                className="w-full h-112.5 object-cover rounded-2xl shadow-xl"
               />
               {/* Purity Score Badge */}
               <motion.div
