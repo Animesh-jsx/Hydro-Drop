@@ -94,7 +94,7 @@ export default function AboutPage() {
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80"
                 alt="Dr. Elias Thorne, Founder & CEO"
-                className="w-full h-[450px] object-cover rounded-2xl shadow-xl"
+                className="w-full h-112.5 object-cover rounded-2xl shadow-xl"
               />
             </AnimatedSection>
             <AnimatedSection direction="right">
@@ -142,7 +142,7 @@ export default function AboutPage() {
                     <h4 className="font-bold text-lg text-gray-900">{item.title}</h4>
                     <p className="text-sm text-gray-500 mt-1">{item.desc}</p>
                   </div>
-                  <div className="relative z-10 flex-shrink-0">
+                  <div className="relative z-10 shrink-0">
                     <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-lg">
                       {item.year}
                     </div>

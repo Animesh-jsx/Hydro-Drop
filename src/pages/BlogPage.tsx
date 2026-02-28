@@ -86,7 +86,7 @@ export default function BlogPage() {
                     transition={{ delay: i * 0.05 }}
                     className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-xs hover:shadow-md transition-all group cursor-pointer"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="relative aspect-4/3 overflow-hidden">
                       <span className="absolute top-3 left-3 z-10 bg-primary/90 text-white text-xs font-medium px-2.5 py-1 rounded-md">
                         {post.category}
                       </span>
@@ -173,7 +173,7 @@ export default function BlogPage() {
 
               {/* Newsletter */}
               <AnimatedSection delay={0.4}>
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 p-6">
+                <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 p-6">
                   <Mail size={28} className="text-primary mb-4" />
                   <h4 className="font-bold text-gray-900 mb-2">Don't Miss Out</h4>
                   <p className="text-sm text-gray-600 mb-4">Get the latest hydration tips delivered to your inbox.</p>
