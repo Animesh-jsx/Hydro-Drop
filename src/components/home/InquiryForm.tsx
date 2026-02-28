@@ -20,7 +20,7 @@ export default function InquiryForm() {
                 <img
                   src="https://images.unsplash.com/photo-1616118132534-381148898bb4?w=500&auto=format&fit=crop&q=80"
                   alt="Hydra Drop Water Bottles"
-                  className="max-h-[350px] w-auto mx-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-500 rounded-xl"
+                  className="max-h-87 w-auto mx-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-500 rounded-xl"
                 />
                 <h3 className="font-display font-bold text-3xl mt-8 text-emerald-900">
                   Taste the <span className="text-secondary italic">Difference</span>

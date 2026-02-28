@@ -6,9 +6,9 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-emerald-50 via-white to-amber-50" />
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-400/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-emerald-900/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-linear-to-t from-emerald-900/5 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
         {/* Text Content */}
@@ -69,14 +69,14 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="relative h-[500px] lg:h-[600px] flex items-center justify-center"
+          className="relative h-125 lg:h-150 flex items-center justify-center"
         >
           <motion.img
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&auto=format&fit=crop&q=80"
             alt="Premium Hydra Drop water bottle"
-            className="h-[450px] w-auto object-contain rounded-2xl shadow-2xl z-20 relative"
+            className="h-112.5 w-auto object-contain rounded-2xl shadow-2xl z-20 relative"
           />
           <div className="absolute top-10 right-10 w-48 h-48 bg-gold-500/10 backdrop-blur-md rounded-full border border-white/20 animate-pulse" />
           <div className="absolute bottom-10 left-10 w-32 h-32 bg-emerald-500/10 backdrop-blur-md rounded-full border border-white/20" />

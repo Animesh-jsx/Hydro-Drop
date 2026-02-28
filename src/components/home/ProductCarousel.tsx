@@ -49,8 +49,8 @@ export default function ProductCarousel() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="group cursor-pointer"
             >
-              <div className="aspect-[3/4] rounded-2xl bg-gray-50 overflow-hidden relative mb-6 border border-transparent hover:border-secondary/30 transition-all duration-300 shadow-xs hover:shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+              <div className="aspect-3/4 rounded-2xl bg-gray-50 overflow-hidden relative mb-6 border border-transparent hover:border-secondary/30 transition-all duration-300 shadow-xs hover:shadow-xl">
+                <div className="absolute inset-0 bg-linear-to-b from-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
                 <img
                   src={product.image}
                   alt={product.name}
@@ -77,3 +77,5 @@ export default function ProductCarousel() {
     </section>
   )
 }
+
+

@@ -56,8 +56,8 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="py-20 bg-gradient-to-r from-emerald-900 to-primary-darkest text-white relative">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-50" />
+    <section className="py-20 bg-linear-to-r from-emerald-900 to-primary-darkest text-white relative">
+      <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-secondary to-transparent opacity-50" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Hydration for Everyone, Everywhere</h2>
         <p className="text-emerald-200 max-w-2xl mx-auto">

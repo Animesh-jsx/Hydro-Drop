@@ -40,9 +40,9 @@ export default function SustainabilitySection() {
               <img
                 src="https://images.unsplash.com/photo-1559839914-17aae19cec71?w=600&auto=format&fit=crop&q=80"
                 alt="Woman drinking pure water in nature"
-                className="w-full h-[500px] object-cover"
+                className="w-full h-125 object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-emerald-900/80 to-transparent" />
               <div className="absolute bottom-8 left-8 text-white">
                 <h3 className="font-display text-3xl font-bold mb-2">Pure & Sustainable</h3>
                 <p className="text-emerald-100">Preserving nature's purity for future generations.</p>
@@ -76,7 +76,7 @@ export default function SustainabilitySection() {
                   whileHover={{ x: 8 }}
                   className="bg-white/95 backdrop-blur-sm p-6 rounded-xl flex items-center gap-6 shadow-xs hover:shadow-md transition-shadow border border-gray-100"
                 >
-                  <div className={`w-14 h-14 rounded-full ${feat.color} flex items-center justify-center flex-shrink-0`}>
+                  <div className={`w-14 h-14 rounded-full ${feat.color} flex items-center justify-center shrink-0`}>
                     <feat.icon size={24} />
                   </div>
                   <div>
