@@ -8,8 +8,8 @@ interface HeroBannerProps {
 
 export default function HeroBanner({ title, subtitle, label }: HeroBannerProps) {
   return (
-    <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary-darkest via-emerald-900 to-primary-darkest" />
+    <section className="relative h-[50vh] min-h-100 flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 bg-linear-to-b from-primary-darkest via-emerald-900 to-primary-darkest" />
       <div
         className="absolute inset-0 opacity-30"
         style={{
