@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #10B981;
+  --color-primary-dark: #064e3b;
+  --color-primary-darkest: #022c22;
+  --color-secondary: #D4AF37;
+  --color-secondary-light: #f5e8aa;
+  --color-secondary-dark: #b48f24;
+  --color-bg-light: #F9FAFB;
+  --color-bg-dark: #022c22;
+  --color-gold-100: #fbf5d5;
+  --color-gold-200: #f5e8aa;
+  --color-gold-400: #eacc62;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #b48f24;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-light);
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+  }
+}
+
+@utility hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
