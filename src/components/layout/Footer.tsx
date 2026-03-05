@@ -86,15 +86,15 @@ export default function Footer() {
             </div>
             <div className="mt-6 space-y-2 text-sm">
               <div className="flex items-center gap-2">
-                <MapPin size={14} className="text-primary flex-shrink-0" />
+                <MapPin size={14} className="text-primary shrink-0" />
                 <span>Kolkata, India</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone size={14} className="text-primary flex-shrink-0" />
+                <Phone size={14} className="text-primary shrink-0" />
                 <span>+91 6291212441</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={14} className="text-primary flex-shrink-0" />
+                <Mail size={14} className="text-primary shrink-0" />
                 <span>info@hydradrop.com</span>
               </div>
             </div>

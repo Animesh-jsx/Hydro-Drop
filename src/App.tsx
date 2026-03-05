@@ -9,6 +9,7 @@ import CustomizationPage from './pages/CustomizationPage'
 import CertificationsPage from './pages/CertificationsPage'
 import BlogPage from './pages/BlogPage'
 import ContactPage from './pages/ContactPage'
+import CartPage from './pages/CartPage'
 
 function App() {
   const location = useLocation()
@@ -25,6 +26,7 @@ function App() {
           <Route path="/certifications" element={<CertificationsPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
       </Routes>
     </AnimatePresence>
