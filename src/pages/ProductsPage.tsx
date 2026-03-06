@@ -4,41 +4,46 @@ import PageTransition from '../components/common/PageTransition'
 import HeroBanner from '../components/common/HeroBanner'
 import AnimatedSection from '../components/common/AnimatedSection'
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 const products = [
   {
+    id: 'hydra-still-mini',
     name: 'Hydra Still Mini',
     tags: ['Events', 'Quick Sip'],
     desc: 'Perfect for corporate events and quick refreshment. Compact...',
-    price: '$12.00',
-    oldPrice: '$15.00',
+    price: 12.00,
+    oldPrice: 15.00,
     volume: '300ml',
     image: 'https://images.unsplash.com/photo-1560023907-5f339617ea55?w=400&auto=format&fit=crop&q=80',
   },
   {
+    id: 'hydra-standard',
     name: 'Hydra Standard',
     tags: ['Best Seller', 'Balanced pH'],
     desc: 'The ideal daily companion. Balanced pH levels for optimal...',
-    price: '$18.00',
-    oldPrice: '$22.00',
+    price: 18.00,
+    oldPrice: 22.00,
     volume: '500ml',
     image: 'https://images.unsplash.com/photo-1606168094336-48f205276929?w=400&auto=format&fit=crop&q=80',
   },
   {
+    id: 'hydra-max',
     name: 'Hydra Max',
     tags: ['All-Day', 'Sports'],
     desc: 'Stay hydrated all day long. Perfect for sports, hiking, and...',
-    price: '$24.00',
-    oldPrice: '$28.00',
+    price: 24.00,
+    oldPrice: 28.00,
     volume: '1L',
     image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&auto=format&fit=crop&q=80',
   },
   {
+    id: 'hydra-home-jar',
     name: 'Hydra Home Jar',
     tags: ['Family', 'Eco-Friendly'],
     desc: 'The sustainable choice for your home or office. Returnable and...',
-    price: '$5.00',
-    oldPrice: '',
+    price: 5.00,
+    oldPrice: 0,
     volume: '20L',
     image: 'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&auto=format&fit=crop&q=80',
   },
@@ -51,6 +56,8 @@ const processSteps = [
 ]
 
 export default function ProductsPage() {
+  const { addItem } = useCart()
+
   return (
     <PageTransition>
       <HeroBanner
@@ -96,10 +103,19 @@ export default function ProductsPage() {
                   <p className="text-sm text-gray-500 mb-4 line-clamp-2">{p.desc}</p>
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-primary font-bold text-lg">{p.price}</span>
-                      {p.oldPrice && <span className="text-gray-400 text-sm line-through ml-2">{p.oldPrice}</span>}
+                      <span className="text-primary font-bold text-lg">${p.price.toFixed(2)}</span>
+                      {p.oldPrice > 0 && <span className="text-gray-400 text-sm line-through ml-2">${p.oldPrice.toFixed(2)}</span>}
                     </div>
-                    <button className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                    <button
+                      onClick={() => addItem({
+                        id: p.id,
+                        name: p.name,
+                        description: `${p.tags[0]} / ${p.volume}`,
+                        price: p.price,
+                        image: p.image,
+                      })}
+                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white flex items-center justify-center transition-colors"
+                    >
                       <ShoppingCart size={16} />
                     </button>
                   </div>

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Droplets, ShoppingCart, Phone } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
+import MiniCart from '../cart/MiniCart'
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [miniCartOpen, setMiniCartOpen] = useState(false)
   const location = useLocation()
   const { totalItems } = useCart()
 
@@ -44,6 +46,7 @@ export default function Navbar() {
   }, [mobileOpen])
 
   return (
+    <>
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -88,8 +91,8 @@ export default function Navbar() {
           {/* Right Section: Cart + CTA + Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Cart Icon */}
-            <Link
-              to="/cart"
+            <button
+              onClick={() => setMiniCartOpen(true)}
               className="relative p-2 text-gray-700 hover:text-primary transition-colors"
               aria-label="Shopping Cart"
             >
@@ -99,7 +102,7 @@ export default function Navbar() {
                   {totalItems > 9 ? '9+' : totalItems}
                 </span>
               )}
-            </Link>
+            </button>
 
             {/* Phone CTA */}
             <a
@@ -168,5 +171,9 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
+
+    {/* Mini Cart Sidebar */}
+    <MiniCart isOpen={miniCartOpen} onClose={() => setMiniCartOpen(false)} />
+    </>
   )
 }

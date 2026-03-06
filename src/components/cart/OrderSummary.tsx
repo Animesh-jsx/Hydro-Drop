@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Shield, Truck } from 'lucide-react'
 
 interface OrderSummaryProps {
@@ -7,6 +8,7 @@ interface OrderSummaryProps {
 const FREE_SHIPPING_THRESHOLD = 100
 
 export default function OrderSummary({ subtotal }: OrderSummaryProps) {
+  const navigate = useNavigate()
   const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD
   const estimatedTaxes = subtotal * 0.08
   const total = subtotal + estimatedTaxes
@@ -39,7 +41,10 @@ export default function OrderSummary({ subtotal }: OrderSummaryProps) {
         </div>
       </div>
 
-      <button className="w-full mt-6 bg-primary hover:bg-emerald-600 text-white font-semibold py-3.5 rounded-xl transition-colors shadow-md hover:shadow-lg text-sm">
+      <button
+        onClick={() => navigate('/checkout')}
+        className="w-full mt-6 bg-primary hover:bg-emerald-600 text-white font-semibold py-3.5 rounded-xl transition-colors shadow-md hover:shadow-lg text-sm"
+      >
         Proceed to Checkout
       </button>
 
