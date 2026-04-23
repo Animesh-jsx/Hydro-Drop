@@ -1,0 +1,3 @@
+## 2024-05-24 - Optimized React Scroll Listener
+**Learning:** Found a performance bottleneck in the codebase architecture. The `Navbar` component had an unoptimized scroll listener. In React, directly updating state from scroll listeners fires synchronously and can cause multiple re-renders within a single frame, leading to scroll jank.
+**Action:** Always wrap state updates inside scroll event listeners with `requestAnimationFrame` to limit re-renders to the screen's refresh rate. Additionally, apply `{ passive: true }` to the event listener so the browser doesn't block scrolling while waiting for the JS thread.
