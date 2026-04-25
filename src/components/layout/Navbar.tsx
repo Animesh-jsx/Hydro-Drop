@@ -20,10 +20,26 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // ⚡ Bolt: Performance optimization
+          // Wrapping state update in requestAnimationFrame prevents excessive React re-renders
+          // and ensures state updates happen right before the next repaint, reducing scroll jank.
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // ⚡ Bolt: Performance optimization
+    // passive: true tells the browser we won't call preventDefault()
+    // This allows the browser to scroll the page immediately without waiting for our JS
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     setMobileOpen(false)
