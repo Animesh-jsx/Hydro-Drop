@@ -1,0 +1,3 @@
+## 2024-05-01 - React Scroll Event Throttling Optimization
+**Learning:** Using `requestAnimationFrame` along with a `ticking` flag for scroll events is an effective way to decouple the fast-firing browser events from React state updates, significantly reducing the likelihood of main-thread blocking and jank. Cleaning up the frame with `cancelAnimationFrame` ensures safety if the component unmounts mid-frame.
+**Action:** Always wrap high-frequency events (like scroll or resize) updating React state in a throttle or debounce mechanism (e.g. `requestAnimationFrame`) and append `{ passive: true }` when adding the listener to prioritize smooth native scrolling.
