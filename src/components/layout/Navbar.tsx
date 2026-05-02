@@ -19,10 +19,33 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
 
+  // ⚡ Bolt Performance Optimization: Throttled scroll listener
+  // Impact: Reduces React state updates during rapid scrolling and prevents layout thrashing
+  // Measurement: Check React DevTools Profiler to see fewer commit cycles during scroll
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number
+
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // Adding passive: true improves scroll performance by telling the browser
+    // that the listener will not call preventDefault()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) {
+        cancelAnimationFrame(frameId)
+      }
+    }
   }, [])
 
   useEffect(() => {
