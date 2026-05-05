@@ -1,0 +1,3 @@
+## 2026-05-05 - [Passive Scroll Listener]
+**Learning:** Using `{ passive: true }` on `scroll` event listeners significantly improves scrolling performance by letting the browser know the listener will not call `preventDefault()`, thus preventing scroll jank. This is especially important for things like tracking scroll position for a sticky navbar where you only care about `window.scrollY`. Throttle the update via `requestAnimationFrame` and clean it up properly.
+**Action:** Always wrap state updates in scroll listeners with `requestAnimationFrame`, add a `ticking` boolean flag to prevent overwhelming the event queue, and add `{ passive: true }` when adding the listener.
