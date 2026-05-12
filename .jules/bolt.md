@@ -1,0 +1,3 @@
+## 2024-05-12 - [Optimized React Scroll Listeners]
+**Learning:** Attaching standard, non-throttled scroll listeners to components like Navbars can cause main thread blocking due to excessive state updates.
+**Action:** Always use `requestAnimationFrame` with a `ticking` flag to throttle continuous events like `scroll`. Always add `{ passive: true }` to the event listener options and `cancelAnimationFrame(frameId)` in the `useEffect` cleanup.
