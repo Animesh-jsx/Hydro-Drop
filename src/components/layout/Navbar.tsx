@@ -20,10 +20,29 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    let ticking = false;
+    let frameId: number;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        // ⚡ Bolt: throttle state updates using requestAnimationFrame to prevent main thread blocking
+        frameId = window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // ⚡ Bolt: apply { passive: true } to unblock main thread scrolling
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // ⚡ Bolt: explicitly cancel animation frame to prevent race conditions/leaks
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, []);
 
   useEffect(() => {
     setMobileOpen(false)
