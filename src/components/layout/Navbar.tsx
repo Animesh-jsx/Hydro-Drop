@@ -20,9 +20,30 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    // ⚡ Bolt: Optimize scroll listener with passive flag and requestAnimationFrame
+    // to prevent jank and excessive state updates on the main thread
+    let ticking = false
+    let frameId: number
+
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // Use passive listener to avoid blocking scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) {
+        cancelAnimationFrame(frameId)
+      }
+    }
   }, [])
 
   useEffect(() => {
