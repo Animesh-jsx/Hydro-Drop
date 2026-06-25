@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
+import AdminLoginPage from './pages/AdminLoginPage'
 
 const ScrollytellingPage = lazy(
   () => import('./components/scrollytelling/ScrollytellingPage'),
@@ -24,6 +25,7 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+        {/* Standalone Routes (no consumer Layout) */}
         <Route
           path="/experience"
           element={
@@ -33,6 +35,10 @@ function App() {
           }
         />
 
+        {/* Admin Routes (no consumer Layout) */}
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+
+        {/* Consumer Storefront Routes */}
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
