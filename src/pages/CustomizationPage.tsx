@@ -30,14 +30,28 @@ const previewImages = [
   'https://images.unsplash.com/photo-1606168094336-48f205276929?w=200&auto=format&fit=crop&q=80',
 ]
 
+
+const VOLUME_PRICES: Record<string, number> = {
+  '250ml': 18,
+  '500ml': 22,
+  '750ml': 26,
+  '1l': 30,
+}
+
+const CAP_FINISH_PRICES: Record<string, number> = {
+  'bamboo': 0,
+  'stainless': 2,
+  'sports': 1,
+}
+
 export default function CustomizationPage() {
   const [waterType, setWaterType] = useState('still')
   const [volume, setVolume] = useState('250ml')
   const [inscription, setInscription] = useState('')
   const [capFinish, setCapFinish] = useState('bamboo')
 
-  const basePrice = volume === '250ml' ? 18 : volume === '500ml' ? 22 : volume === '750ml' ? 26 : 30
-  const totalPrice = basePrice + (inscription ? 4 : 0) + (capFinish === 'bamboo' ? 0 : capFinish === 'stainless' ? 2 : 1)
+  const basePrice = VOLUME_PRICES[volume] ?? 30
+  const totalPrice = basePrice + (inscription ? 4 : 0) + (CAP_FINISH_PRICES[capFinish] ?? 1)
 
   return (
     <PageTransition>
