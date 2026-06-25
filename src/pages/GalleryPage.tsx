@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Instagram, ChevronDown } from 'lucide-react'
 import PageTransition from '../components/common/PageTransition'
@@ -28,9 +28,9 @@ export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [showCount, setShowCount] = useState(8)
 
-  const filtered = activeFilter === 'All'
-    ? galleryImages
-    : galleryImages.filter((img) => img.cat === activeFilter)
+  const filtered = useMemo(() => {
+    return activeFilter === 'All' ? galleryImages : galleryImages.filter((img) => img.cat === activeFilter)
+  }, [activeFilter])
 
   return (
     <PageTransition>
