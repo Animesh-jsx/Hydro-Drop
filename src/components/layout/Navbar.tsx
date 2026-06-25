@@ -14,6 +14,7 @@ const navLinks = [
   { name: 'Certifications', path: '/certifications' },
   { name: 'Blog', path: '/blog' },
   { name: 'Contact Us', path: '/contact' },
+  { name: '✦ Experience', path: '/experience' },
 ]
 
 export default function Navbar() {
