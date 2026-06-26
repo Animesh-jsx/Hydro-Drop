@@ -24,10 +24,28 @@ export default function Navbar() {
   const location = useLocation()
   const { totalItems } = useCart()
 
+  // Performance Optimization: Throttle scroll event to prevent jank.
+  // Using requestAnimationFrame ensures state updates align with browser rendering,
+  // while { passive: true } improves scroll performance by indicating preventDefault won't be called.
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number
+
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) cancelAnimationFrame(frameId)
+    }
   }, [])
 
   useEffect(() => {
