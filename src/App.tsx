@@ -14,6 +14,15 @@ import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import AdminLoginPage from './pages/AdminLoginPage'
+import AdminLayout from './components/admin/AdminLayout'
+import AdminProtectedRoute from './components/admin/AdminProtectedRoute'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminOrders from './pages/admin/AdminOrders'
+import AdminCustomers from './pages/admin/AdminCustomers'
+import AdminProducts from './pages/admin/AdminProducts'
+import AdminInventory from './pages/admin/AdminInventory'
+import AdminCustomization from './pages/admin/AdminCustomization'
+import AdminSettings from './pages/admin/AdminSettings'
 
 const ScrollytellingPage = lazy(
   () => import('./components/scrollytelling/ScrollytellingPage'),
@@ -35,8 +44,26 @@ function App() {
           }
         />
 
-        {/* Admin Routes (no consumer Layout) */}
+        {/* Admin Login (no layout) */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
+
+        {/* Admin Portal Routes (protected) */}
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout />
+            </AdminProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="customers" element={<AdminCustomers />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="inventory" element={<AdminInventory />} />
+          <Route path="customization" element={<AdminCustomization />} />
+          <Route path="settings" element={<AdminSettings />} />
+        </Route>
 
         {/* Consumer Storefront Routes */}
         <Route element={<Layout />}>

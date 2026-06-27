@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Droplets, Eye, EyeOff, Lock, Mail } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 function AdminLoginPage() {
   const [email, setEmail] = useState('')
@@ -10,7 +12,10 @@ function AdminLoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { login } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
@@ -21,12 +26,19 @@ function AdminLoginPage() {
 
     setIsLoading(true)
 
-    // Simulate authentication (replace with real auth logic)
-    setTimeout(() => {
+    try {
+      const user = await login(email, password)
+      if (user.role !== 'admin') {
+        setError('Access denied. Admin credentials required.')
+        setIsLoading(false)
+        return
+      }
+      navigate('/admin/dashboard')
+    } catch (err: any) {
+      setError(err.message || 'Invalid email or password.')
+    } finally {
       setIsLoading(false)
-      // For demo purposes, navigate to admin dashboard
-      window.location.href = '/admin/dashboard'
-    }, 1500)
+    }
   }
 
   return (
