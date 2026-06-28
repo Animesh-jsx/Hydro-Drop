@@ -1,0 +1,3 @@
+## 2023-10-27 - [Throttling Scroll Events in React]
+**Learning:** React state updates inside scroll event listeners without throttling can flood the main thread and cause layout trashing. Using `requestAnimationFrame` with a ticking flag and applying `{ passive: true }` improves scrolling performance. Ensure you initialize the `frameId` variable to avoid TypeScript "used before assigned" errors in the cleanup function since it runs even if the event listener never fired.
+**Action:** Always use `requestAnimationFrame` and a ticking flag when listening for scroll events to update React state, and initialize the `frameId` explicitly (`let frameId: number | undefined`).
