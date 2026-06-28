@@ -24,10 +24,30 @@ export default function Navbar() {
   const location = useLocation()
   const { totalItems } = useCart()
 
+  // ⚡ Bolt Performance Optimization
+  // Use requestAnimationFrame to throttle scroll events and prevent unnecessary re-renders.
+  // Add passive flag to prevent blocking main thread scrolling.
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number
+
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+    }
   }, [])
 
   useEffect(() => {
