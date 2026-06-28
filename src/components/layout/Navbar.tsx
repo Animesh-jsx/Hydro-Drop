@@ -25,9 +25,28 @@ export default function Navbar() {
   const { totalItems } = useCart()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number | null = null
+
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // ⚡ Bolt: Added passive flag and requestAnimationFrame throttling to prevent main thread jank during scroll
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) {
+        cancelAnimationFrame(frameId)
+      }
+    }
   }, [])
 
   useEffect(() => {
