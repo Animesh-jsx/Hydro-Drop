@@ -7,6 +7,7 @@ import { dirname } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
+  test: { environment: 'jsdom' },
   plugins: [
     react(),
     tailwindcss(),
@@ -16,4 +17,4 @@ export default defineConfig({
       '@': dirname(fileURLToPath(import.meta.url)) + '/src',
     },
   },
-})
+} as any)
