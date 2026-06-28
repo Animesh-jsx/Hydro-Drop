@@ -1,0 +1,3 @@
+## 2026-04-28 - [Optimized Scroll Listener with requestAnimationFrame]
+**Learning:** React 19 state updates triggered indiscriminately on `scroll` events can flood the main thread and cause UI jank. Even simple state setting (like checking `window.scrollY > 20`) triggered at scroll frequency can block performance.
+**Action:** When adding `scroll` listeners in React `useEffect`, always throttle state updates using `requestAnimationFrame` and add the `{ passive: true }` option to `window.addEventListener` to ensure main thread remains unblocked and prevent browser warnings about non-passive scroll blocking.
