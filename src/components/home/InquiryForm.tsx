@@ -33,7 +33,7 @@ export default function InquiryForm() {
               <h3 className="font-display text-2xl font-bold text-gray-900 mb-8 border-b pb-4 border-gray-100">
                 Inquire for Bulk or Home Delivery
               </h3>
-              <form className="space-y-5">
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>

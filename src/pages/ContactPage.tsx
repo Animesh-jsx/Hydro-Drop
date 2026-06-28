@@ -20,7 +20,7 @@ export default function ContactPage() {
             <AnimatedSection direction="left" className="lg:col-span-2">
               <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 shadow-xs">
                 <h2 className="font-display text-2xl font-bold text-gray-900 mb-8">Send us a message</h2>
-                <form className="space-y-5">
+                <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
