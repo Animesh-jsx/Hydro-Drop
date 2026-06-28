@@ -30,10 +30,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    setMobileOpen(false)
-  }, [location.pathname])
-
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
@@ -146,6 +142,7 @@ export default function Navbar() {
                 >
                   <Link
                     to={link.path}
+                    onClick={() => setMobileOpen(false)}
                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       location.pathname === link.path
                         ? 'bg-emerald-50 text-primary font-semibold'
@@ -161,6 +158,7 @@ export default function Navbar() {
               <div className="pt-3 border-t border-gray-100 mt-2">
                 <a
                   href="tel:+916291721441"
+                  onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center gap-2 bg-primary-darkest text-white px-6 py-3 rounded-full font-semibold text-sm"
                 >
                   <Phone className="w-4 h-4" />
