@@ -25,9 +25,31 @@ export default function Navbar() {
   const { totalItems } = useCart()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number | null = null
+
+    // ⚡ Bolt Performance Optimization:
+    // Throttle scroll event using requestAnimationFrame to prevent excessive
+    // main thread work and state updates during scroll.
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // Use passive listener to avoid blocking scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId)
+      }
+    }
   }, [])
 
   useEffect(() => {
