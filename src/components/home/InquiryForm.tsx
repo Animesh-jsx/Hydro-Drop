@@ -33,34 +33,34 @@ export default function InquiryForm() {
               <h3 className="font-display text-2xl font-bold text-gray-900 mb-8 border-b pb-4 border-gray-100">
                 Inquire for Bulk or Home Delivery
               </h3>
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
+                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="John Doe" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-                    <input type="tel" placeholder="+91 98765 43210" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
+                    <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <input type="tel" id="mobileNumber" name="mobileNumber" required placeholder="+91 98765 43210" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <input type="email" placeholder="you@company.com" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <input type="email" id="email" name="email" required placeholder="you@company.com" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                    <input type="text" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                    <input type="text" id="city" name="city" required className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-                    <input type="text" className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
+                    <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                    <input type="text" id="state" name="state" required className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Your Requirements</label>
-                  <textarea rows={4} placeholder="Tell us about your needs (Home, Office, Event)..." className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" />
+                  <label htmlFor="requirements" className="block text-sm font-medium text-gray-700 mb-1">Your Requirements</label>
+                  <textarea id="requirements" name="requirements" required rows={4} placeholder="Tell us about your needs (Home, Office, Event)..." className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" />
                 </div>
                 <button type="submit" className="w-full bg-emerald-900 hover:bg-emerald-800 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-emerald-900/30 transition-all uppercase tracking-wider">
                   Request Quote
