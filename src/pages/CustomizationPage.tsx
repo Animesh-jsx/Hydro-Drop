@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'motion/react'
 import { Droplets, Zap, Waves, Gem, Settings, AlignJustify, Sparkles } from 'lucide-react'
 import PageTransition from '../components/common/PageTransition'
@@ -36,8 +36,11 @@ export default function CustomizationPage() {
   const [inscription, setInscription] = useState('')
   const [capFinish, setCapFinish] = useState('bamboo')
 
-  const basePrice = volume === '250ml' ? 18 : volume === '500ml' ? 22 : volume === '750ml' ? 26 : 30
-  const totalPrice = basePrice + (inscription ? 4 : 0) + (capFinish === 'bamboo' ? 0 : capFinish === 'stainless' ? 2 : 1)
+  // Optimize price calculation to prevent recalculation on unrelated state changes (like waterType)
+  const totalPrice = useMemo(() => {
+    const basePrice = volume === '250ml' ? 18 : volume === '500ml' ? 22 : volume === '750ml' ? 26 : 30
+    return basePrice + (inscription ? 4 : 0) + (capFinish === 'bamboo' ? 0 : capFinish === 'stainless' ? 2 : 1)
+  }, [volume, inscription, capFinish])
 
   return (
     <PageTransition>
