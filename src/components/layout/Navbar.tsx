@@ -25,8 +25,21 @@ export default function Navbar() {
   const { totalItems } = useCart()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // ⚡ Bolt: Throttling scroll listener via requestAnimationFrame
+          // Impact: Limits state updates to 60fps instead of firing synchronously on every scroll tick.
+          // This reduces React re-renders and prevents scroll jank.
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    // ⚡ Bolt: Adding passive: true ensures the scroll listener doesn't block the main thread.
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
