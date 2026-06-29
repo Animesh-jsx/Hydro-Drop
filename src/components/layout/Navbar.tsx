@@ -25,10 +25,29 @@ export default function Navbar() {
   const { totalItems } = useCart()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    let ticking = false;
+    let frameId: number;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        // ⚡ Bolt: Throttle state updates to requestAnimationFrame to prevent unnecessary renders
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // ⚡ Bolt: Use passive listener to prevent blocking the main thread during scrolling
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frameId) {
+        cancelAnimationFrame(frameId); // ⚡ Bolt: Cleanup pending frames to prevent memory leaks
+      }
+    };
+  }, []);
 
   useEffect(() => {
     setMobileOpen(false)
