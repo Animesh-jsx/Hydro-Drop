@@ -25,9 +25,31 @@ export default function Navbar() {
   const { totalItems } = useCart()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    let ticking = false
+    let frameId: number
+
+    // Optimize scroll listener: Use requestAnimationFrame to throttle state updates
+    // and prevent jank during rapid scrolling.
+    const handleScroll = () => {
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // Add passive flag to improve scroll performance by telling the browser
+    // we won't call preventDefault().
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    // Cleanup: Remove listener and cancel any pending animation frames
+    // to prevent memory leaks and state updates on unmounted components.
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId) cancelAnimationFrame(frameId)
+    }
   }, [])
 
   useEffect(() => {
